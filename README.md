@@ -1,0 +1,1 @@
+This project uses machine learning models to detect credit card fraud. By analyzing transaction data such as time, amount, and other features, the models learn to distinguish between legitimate and suspicious transactions. The goal is to build, train, and compare different classification models to see which performs best at identifying fraud in highly imbalanced data.
