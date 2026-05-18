@@ -7,7 +7,7 @@ from sklearn.metrics import (
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
 import xgboost as xgb
-import lightgmb as lgb
+import lightgbm as lgb
 import numpy as np
 
 
@@ -92,7 +92,7 @@ def make_models(scale_pos_weight, use_class_weights):
         ),
         'XGBoost': xgb.XGBClassifier(
             n_estimators=300, max_depth=6, learning_rate=0.1,
-            scale_pos_weight=(neg/pos) if use_class_weights else 1,
+            scale_pos_weight=scale_pos_weight if use_class_weights else 1,
             eval_metric='aucpr', n_jobs=-1, random_state=seed
         ),
         'LightGBM': lgb.LGBMClassifier(
