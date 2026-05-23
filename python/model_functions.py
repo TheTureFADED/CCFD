@@ -18,7 +18,7 @@ def evaluate_model(model, x_test, y_test, model_name="Model", threshold=0.5, sho
 
 
     accuracy = accuracy_score(y_test, y_pred)
-    precision = precision_score(y_test, y_pred)
+    precision = precision_score(y_test, y_pred, zero_division=0)
     recall = recall_score(y_test, y_pred)
     f1 = f1_score(y_test, y_pred)
     roc_auc = roc_auc_score(y_test, y_pred_proba)
@@ -97,7 +97,7 @@ def make_models(scale_pos_weight, use_class_weights):
         ),
         'LightGBM': lgb.LGBMClassifier(
             n_estimators=300, max_depth=6, learning_rate=0.1,
-            is_unbalance=use_class_weights,
+            scale_pos_weight=scale_pos_weight if use_class_weights else 1,
             n_jobs=-1, random_state=seed, verbose=-1
         ),
     }
